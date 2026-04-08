@@ -1251,12 +1251,12 @@
     document.getElementById('success-msg').style.display = 'block';
     document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth' });
 
-    // PRODUCTION: uncomment and add your Apps Script URL
-    // fetch('YOUR_APPS_SCRIPT_URL', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: { 'Content-Type': 'application/json' }
-    // });
+    // Send to Apps Script backend
+    fetch('https://script.google.com/macros/s/AKfycbzvGzAqsODG5O7HuQNoh3TOTq50P0SE2BWneVsyk6lta_eEhc9jUNUAiQB0Zn_8XT7T/exec', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    });
   });
 </script>
 </body>
