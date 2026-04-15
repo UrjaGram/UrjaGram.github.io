@@ -878,7 +878,7 @@
       <div class="rubric-pct">25%</div>
       <div class="rubric-bar-wrap">
         <div class="rubric-name">DPR Understanding</div>
-        <div class="rubric-desc">Specific, correct answers to all 3 DPR questions — proves you've read the project document and financial model</div>
+        <div class="rubric-desc">Specific, correct answers to all 8 DPR questions — proves you've read the DPR V6 and financial model</div>
         <div class="rubric-bar-bg"><div class="rubric-bar"></div></div>
       </div>
     </div>
@@ -987,43 +987,43 @@
             <a href="https://docs.google.com/document/d/1CGBgMlSgvgTWM4xyUCG1LZrLmApy8Caf/edit?usp=sharing" target="_blank" class="download-btn">📋 Hackathon Programme</a>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 1</div>
-            <div class="q-text">What is the estimated gross project cost range for the Jhansa energy transition? Name the two largest cost components. <span class="req">*</span></div>
+            <div class="q-num">Question 1 — Baseline &amp; Energy Profile</div>
+            <div class="q-text">How many households does the Jhansa DPR cover? Describe the village's cooking-energy profile — how many households fall into each fuel category (mixed LPG-biomass, biomass-only, LPG-only) and what is the LPG-to-biomass energy-use ratio for mixed households? <span class="req">*</span></div>
             <textarea name="dprQ1" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 2</div>
-            <div class="q-text">Name the three main revenue streams in the Jhansa project financial model. <span class="req">*</span></div>
+            <div class="q-num">Question 2 — Energy Expenditure</div>
+            <div class="q-text">What is the total annual household energy expenditure in Jhansa (electricity + cooking fuels) at baseline? What is the projected cumulative 10-year expenditure if no transition occurs? <span class="req">*</span></div>
             <textarea name="dprQ2" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 3</div>
-            <div class="q-text">What is VET-OS and what role does it play in the Jhansa project? Name at least four modules it must include. <span class="req">*</span></div>
+            <div class="q-num">Question 3 — Technical Solution &amp; Solar</div>
+            <div class="q-text">What is the total confirmed rooftop solar portfolio proposed for Jhansa? Break it down into residential and school components (MW and number of systems). What is the estimated annual solar generation? <span class="req">*</span></div>
             <textarea name="dprQ3" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 4</div>
-            <div class="q-text">How many households are covered in the Jhansa project? What is the estimated per-household cost of the energy transition? <span class="req">*</span></div>
+            <div class="q-num">Question 4 — Cooking Technology Stack</div>
+            <div class="q-text">The DPR proposes a "Household Cooking Technology Stack" rather than a single cooking solution. Name at least four cooking options included in this stack and explain why a diversified approach is needed. <span class="req">*</span></div>
             <textarea name="dprQ4" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 5</div>
-            <div class="q-text">What is the RESCO model as described in the DPR? How does a household pay for the energy system under this model? <span class="req">*</span></div>
+            <div class="q-num">Question 5 — Transition Pathway</div>
+            <div class="q-text">The DPR describes a two-track household energy transition pathway (electricity and cooking fuel). Outline the three phases for each track and the target outcomes by FY 2035-36. <span class="req">*</span></div>
             <textarea name="dprQ5" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 6</div>
-            <div class="q-text">What is the total installed solar capacity proposed for Jhansa (rooftop + community)? What is the estimated annual solar generation in kWh? <span class="req">*</span></div>
+            <div class="q-num">Question 6 — Project Cost &amp; PM Surya Ghar</div>
+            <div class="q-text">What is the gross project cost range? What is the PM Surya Ghar subsidy per household system, and what net funding requirement remains after this central subsidy? What national conversion-rate problem does VET-OS address? <span class="req">*</span></div>
             <textarea name="dprQ6" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 7</div>
-            <div class="q-text">What are carbon credits and how does the Jhansa project plan to generate and monetise them? Which verification standard is referenced? <span class="req">*</span></div>
+            <div class="q-num">Question 7 — Carbon Credits</div>
+            <div class="q-text">How many tonnes of CO2 can the Jhansa rooftop solar portfolio avoid per year? Show the calculation method (generation in GWh, grid emission factor, result in tCO2e). <span class="req">*</span></div>
             <textarea name="dprQ7" rows="3" placeholder="Your answer..." required></textarea>
           </div>
           <div class="dpr-q">
-            <div class="q-num">Question 8</div>
-            <div class="q-text">The DPR describes a financing structure with multiple funding sources. Name at least three funding sources and their approximate share of the net project cost. <span class="req">*</span></div>
+            <div class="q-num">Question 8 — VET-OS &amp; Implementation</div>
+            <div class="q-text">What is VET-OS and what are its key functions in the Jhansa project? Name the three local implementation engines described in the DPR and explain how each contributes to the project. <span class="req">*</span></div>
             <textarea name="dprQ8" rows="3" placeholder="Your answer..." required></textarea>
           </div>
         </div>
@@ -1167,10 +1167,14 @@
     div.className = 'member-row';
     div.innerHTML = `
       <div class="member-num">Member ${i}${isLeader ? ' · Team Leader' : ''}</div>
-      <div class="form-row three">
+      <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
         <div>
           <label>Full Name <span class="req">*</span></label>
           <input type="text" name="m${i}_name" placeholder="Full name" required />
+        </div>
+        <div>
+          <label>Roll No. <span class="req">*</span></label>
+          <input type="text" name="m${i}_rollno" placeholder="e.g. 22CSE1045" required />
         </div>
         <div>
           <label>Branch <span class="req">*</span></label>
