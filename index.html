@@ -1244,18 +1244,42 @@
 
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Show success
-    document.getElementById('success-team').textContent = data.teamName;
-    document.getElementById('success-email').textContent = data.leaderEmail;
-    form.style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
-    document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth' });
+    // Disable submit button to prevent double submission
+    const submitBtn = form.querySelector('.btn-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
 
     // Send to Apps Script backend
-    fetch('https://script.google.com/macros/s/AKfycbzvGzAqsODG5O7HuQNoh3TOTq50P0SE2BWneVsyk6lta_eEhc9jUNUAiQB0Zn_8XT7T/exec', {
+    // NOTE: Must use text/plain — Apps Script rejects application/json due to CORS preflight
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvGzAqsODG5O7HuQNoh3TOTq50P0SE2BWneVsyk6lta_eEhc9jUNUAiQB0Zn_8XT7T/exec';
+
+    fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'text/plain' }  // text/plain avoids CORS preflight block
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(result) {
+      if (result.status === 'ok') {
+        // Show success only after confirmed backend response
+        document.getElementById('success-team').textContent = data.teamName;
+        document.getElementById('success-email').textContent = data.leaderEmail;
+        form.style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Backend returned an error
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Proposal →';
+        alert('Submission error: ' + (result.message || 'Unknown error. Please try again or email connect@urjagram.ai'));
+      }
+    })
+    .catch(function(err) {
+      // Network or CORS error
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Proposal →';
+      alert('Could not reach the server. Please check your internet connection and try again. If the problem persists, email your proposal to connect@urjagram.ai');
+      console.error('Submission failed:', err);
     });
   });
 </script>
